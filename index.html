@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEE GPA Calculator Nepal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f5f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #3498db;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        /* Main Content Container */
+        main {
+            width: 95%;
+            max-width: 900px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Form and Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #e3f2fd;
+            color: #333;
+            font-weight: 600;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        input[type="number"] {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        /* Button Styles */
+        button {
+            background-color: #2ecc71;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #27ae60;
+        }
+
+        /* GPA Display */
+        #average-final-grade {
+            font-size: 2em;
+            color: #2ecc71;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Grading System Table */
+        .grading-system {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .grading-system th,
+        .grading-system td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        .grading-system th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 600px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            th,
+            td {
+                padding: 8px 10px;
+            }
+
+            input[type="number"] {
+                width: 60px;
+            }
+
+            button {
+                padding: 10px 16px;
+                font-size: 0.9em;
+            }
+        }
+
+        /* Footer Styles */
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>SEE GPA Calculator Nepal</h1>
+        <p>Calculate your GPA with ease!</p>
+    </header>
+
+    <main>
+        <h2>Enter Your Marks</h2>
+        <table id="grade-table">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Theory</th>
+                    <th>Practical</th>
+                    <th>Total Marks</th>
+                    <th>Grade</th>
+                    <th>Grade Point</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nepali</td>
+                    <td><input type="number" id="nepali-theory" max="75" min="0"></td>
+                    <td><input type="number" id="nepali-practical" max="25" min="0"></td>
+                    <td id="nepali-total"></td>
+                    <td id="nepali-grade"></td>
+                    <td id="nepali-grade-point"></td>
+                </tr>
+                <tr>
+                    <td>English</td>
+                    <td><input type="number" id="english-theory" max="75" min="0"></td>
+                    <td><input type="number" id="english-practical" max="25" min="0"></td>
+                    <td id="english-total"></td>
+                    <td id="english-grade"></td>
+                    <td id="english-grade-point"></td>
+                </tr>
+                <tr>
+                    <td>C.Math</td>
+                    <td><input type="number" id="cmaths-theory" max="75" min="0"></td>
+                    <td><input type="number" id="cmaths-practical" max="25" min="0"></td>
+                    <td id="cmaths-total"></td>
+                    <td id="cmaths-grade"></td>
+                    <td id="cmaths-grade-point"></td>
+                </tr>
+                <tr>
+                    <td>Science</td>
+                    <td><input type="number" id="science-theory" max="75" min="0"></td>
+                    <td><input type="number" id="science-practical" max="25" min="0"></td>
+                    <td id="science-total"></td>
+                    <td id="science-grade"></td>
+                    <td id="science-grade-point"></td>
+                </tr>
+                <tr>
+                    <td>Social</td>
+                    <td><input type="number" id="social-theory" max="75" min="0"></td>
+                    <td><input type="number" id="social-practical" max="25" min="0"></td>
+                    <td id="social-total"></td>
+                    <td id="social-grade"></td>
+                    <td id="social-grade-point"></td>
+                </tr>
+                <tr>
+                    <td>Computer</td>
+                    <td><input type="number" id="optional1-theory" max="50" min="0"></td>
+                    <td><input type="number" id="optional1-practical" max="50" min="0"></td>
+                    <td id="optional1-total"></td>
+                    <td id="optional1-grade"></td>
+                    <td id="optional1-grade-point"></td>
+                </tr>
+                <tr>
+                    <td>Opt II</td>
+                    <td><input type="number" id="optional2-theory" max="75" min="0"></td>
+                    <td><input type="number" id="optional2-practical" max="25" min="0"></td>
+                    <td id="optional2-total"></td>
+                    <td id="optional2-grade"></td>
+                    <td id="optional2-grade-point"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button onclick="calculateGPA()">Calculate GPA</button>
+        <h2 id="average-final-grade">GPA: 0.00</h2>
+    </main>
+
+    <section>
+        <h2>Grading System</h2>
+        <table class="grading-system">
+            <thead>
+                <tr>
+                    <th>Score Range</th>
+                    <th>Grade</th>
+                    <th>Grade Point</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>90-100</td>
+                    <td>A+</td>
+                    <td>4.00</td>
+                </tr>
+                <tr>
+                    <td>80-90</td>
+                    <td>A</td>
+                    <td>3.6</td>
+                </tr>
+                <tr>
+                    <td>70-80</td>
+                    <td>B+</td>
+                    <td>3.2</td>
+                </tr>
+                <tr>
+                    <td>60-70</td>
+                    <td>B</td>
+                    <td>2.8</td>
+                </tr>
+                <tr>
+                    <td>50-60</td>
+                    <td>C+</td>
+                    <td>2.4</td>
+                </tr>
+                <tr>
+                    <td>40-50</td>
+                    <td>C</td>
+                    <td>2.0</td>
+                </tr>
+                <tr>
+                    <td>35-40</td>
+                    <td>D</td>
+                    <td>1.6</td>
+                </tr>
+                <tr>
+                    <td>Below 35</td>
+                    <td>NG (Non Graded)</td>
+                    <td>0.0</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 SEE GPA Calculator Nepal</p>
+    </footer>
+
+    <script>
+        const gradingSystem = [{
+                minPercentage: 90,
+                grade: "A+",
+                gradePoint: 4.00
+            },
+            {
+                minPercentage: 80,
+                grade: "A",
+                gradePoint: 3.6
+            },
+            {
+                minPercentage: 70,
+                grade: "B+",
+                gradePoint: 3.2
+            },
+            {
+                minPercentage: 60,
+                grade: "B",
+                gradePoint: 2.8
+            },
+            {
+                minPercentage: 50,
+                grade: "C+",
+                gradePoint: 2.4
+            },
+            {
+                minPercentage: 40,
+                grade: "C",
+                gradePoint: 2.0
+            },
+            {
+                minPercentage: 35,
+                grade: "D",
+                gradePoint: 1.6
+            },
+            {
+                minPercentage: 0,
+                grade: "NG",
+                gradePoint: 0.0
+            }
+        ];
+
+        function calculateGrade(totalMarks) {
+            for (let i = 0; i < gradingSystem.length; i++) {
+                if (totalMarks >= gradingSystem[i].minPercentage) {
+                    return gradingSystem[i];
+                }
+            }
+            return {
+                grade: "NG",
+                gradePoint: 0.0
+            };
+        }
+
+        function calculateGPA() {
+            const subjects = ["nepali", "english", "cmaths", "science", "social", "optional1", "optional2"];
+            let totalCreditHours = 0;
+            let totalGradePoints = 0;
+
+            subjects.forEach(subject => {
+                const theoryMarks = parseInt(document.getElementById(`${subject}-theory`).value) || 0;
+                const practicalMarks = parseInt(document.getElementById(`${subject}-practical`).value) || 0;
+                const totalMarks = theoryMarks + practicalMarks;
+
+                document.getElementById(`${subject}-total`).innerText = totalMarks;
+
+                const grade = calculateGrade(totalMarks);
+                document.getElementById(`${subject}-grade`).innerText = grade.grade;
+                document.getElementById(`${subject}-grade-point`).innerText = grade.gradePoint;
+
+                let creditHours;
+                if (subject === "social" || subject === "optional1" || subject === "optional2") {
+                    creditHours = 4;
+                } else {
+                    creditHours = 5;
+                }
+                totalCreditHours += creditHours;
+                totalGradePoints += grade.gradePoint * creditHours;
+            });
+
+            const gpa = totalGradePoints / totalCreditHours;
+            document.getElementById("average-final-grade").innerText = `GPA: ${gpa.toFixed(2)}`;
+        }
+    </script>
+</body>
+
+</html>
