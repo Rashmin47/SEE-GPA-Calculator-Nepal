@@ -1,0 +1,194 @@
+/* styles.css */
+
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: #f0f5f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Header Styles */
+header {
+    background-color: #3498db;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Controls Styles */
+.controls {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+select {
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 200px;
+    text-align: center;
+}
+
+/* Main Content Styles */
+main {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 900px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.calculator-container {
+    overflow-x: auto;
+}
+
+.subject-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.subject-table th,
+.subject-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.subject-table th {
+    background-color: #3498db;
+    color: white;
+}
+
+input[type="number"] {
+    width: 80px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+button {
+    background-color: #2ecc71;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Result Section Styles */
+.result-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#finalGPA {
+    font-size: 24px;
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+/* Grading System Styles */
+.grading-system {
+    margin-top: 30px;
+}
+
+#gradeTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#gradeTable th,
+#gradeTable td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+#gradeTable th {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Footer Styles */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    margin-top: 20px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo-container {
+        position: static;
+        margin-bottom: 10px;
+    }
+
+    .logo {
+        width: 40px;
+    }
+
+    .controls {
+        width: 100%;
+    }
+
+    select {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    .subject-table th,
+    .subject-table td {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    input[type="number"] {
+        width: 60px;
+    }
+
+    .result-section {
+        margin-top: 15px;
+    }
+
+    #finalGPA {
+        font-size: 20px;
+    }
+}
